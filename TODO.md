@@ -10,7 +10,7 @@ Make the service like `DockerHub`.
     - Modeling
     - DB schema
     - Simple CRUD app
-- Understand how to use build with Jenkin's API
+- Understand how to use build with Jenkin's API.
 - Test gitbucket's webhook.
 - Link applications.
     - Build image from VirtualStack.
@@ -18,4 +18,4 @@ Make the service like `DockerHub`.
 - Corresponding to other storage.(Default `local`)
     - AWS S3
     - Openstack
-    - ...
+    - and more...
