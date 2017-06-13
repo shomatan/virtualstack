@@ -4,8 +4,8 @@ Make the service like `DockerHub`.
 
 # TODO
 
-- Set up gitbucket and jenkins, docker-registry with docker.
-- Set up PlayFramework.
+- [done] 6/14 Set up gitbucket and jenkins, docker-registry with docker.
+- [done] 6/14 Set up PlayFramework.
 - Implement API server.
     - Modeling
     - DB schema
