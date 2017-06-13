@@ -14,3 +14,6 @@ project/plugins/project/
 
 # Scala-IDE specific
 .idea/
+
+# Docker specific
+volumes/

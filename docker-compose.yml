@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  # virtaul stack app ↓
+
+  gitbucket:
+    container_name: vs-gitbucket
+    image: shomatan/gitbucket:4.12.1-alpine
+    ports:
+      - "8081:8080"
+      - "29418:29418"
+    volumes:
+      - ./volumes/gitbucket/repositories:/gitbucket/repositories
+      - ./volumes/gitbucket/data:/gitbucket/data
+    restart: always
+
+  db:
+    container_name: vs-postgres
+    image: postgres:9.5-alpine
+    environment:
+      POSTGRES_DB: gitbucket
+      POSTGRES_USER: gitbucket
+      POSTGRES_PASSWORD: gitbucket
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    restart: always
+
+  jenkins:
+    container_name: vs-jenkins
+    image: jenkins:2.46.3
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./volumes/jenkins:/var/jenkins_home
+    restart: always
+
+  registry:
+    container_name: vs-registry
+    image: registry:2.6.1
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./volumes/registry:/var/lib/registry
+    restart: always
