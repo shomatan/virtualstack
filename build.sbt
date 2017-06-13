@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
   "net.databinder.dispatch" %% "dispatch-core"          % "0.11.2",
   "io.circe"                %% "circe-core"             % "0.8.0",
   "io.circe"                %% "circe-generic"          % "0.8.0",
-  "io.circe"                %% "circe-parser"           % "0.8.0",
+  "io.circe"                %% "circe-parser"           % "0.8.0"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
