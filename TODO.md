@@ -7,6 +7,7 @@ Make the service like `DockerHub`.
 - [done] 6/14 Set up gitbucket and jenkins, docker-registry with docker.
 - [done] 6/14 Set up PlayFramework.
 - [done] 6/14 Set up VueJs.
+- Customize ready-to-use docker image for each service. 
 - Create test repo(gitbucket), job(jenkins).
 - Implement API server.
     - [WIP] Modeling 
