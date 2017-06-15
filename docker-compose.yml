@@ -38,6 +38,12 @@ services:
       - ./volumes/jenkins:/var/jenkins_home
     restart: always
 
+  docker:
+    container_name: vs-docker
+    image: docker:17.05-dind
+    privileged: true
+    restart: always
+
   registry:
     container_name: vs-registry
     image: registry:2.6.1

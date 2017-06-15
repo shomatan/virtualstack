@@ -7,13 +7,14 @@ Make the service like `DockerHub`.
 - [done] 6/14 Set up gitbucket and jenkins, docker-registry with docker.
 - [done] 6/14 Set up PlayFramework.
 - [done] 6/14 Set up VueJs.
-- Set up a docker engine to be used by Jenkins.
-- Customize ready-to-use docker image for each service. 
+- [done] 6/15 Set up a docker engine to be used by Jenkins.
+- Understand how to use build with Jenkin's API.
+    - Create jenkins-client with submodule.
 - [done] 6/15 Create test repo(gitbucket), job(jenkins).
 - Implement API server.
     - [WIP] Modeling 
     - [WIP] Link to `docker-registry`
-- Understand how to use build with Jenkin's API.
+- Customize ready-to-use docker image for each service. 
 - Test gitbucket's webhook.
 - Link applications.
     - Build image from VirtualStack.
