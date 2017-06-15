@@ -1,4 +1,4 @@
-package com.github.virtualstack.controllers.Api.V1
+package controllers
 
 import javax.inject.{Inject, Singleton}
 
