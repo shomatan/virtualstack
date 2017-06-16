@@ -9,7 +9,7 @@
                     <tbody v-for="r in repositories">
                         <tr>
                             <td>{{ r.name }}</td>
-                            <td @click="edit(r.name)">DETAILS</td>
+                            <td @click="detail(r.name)">DETAILS</td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,9 +53,9 @@
                         self.isLoading = false
                     })
             },
-            edit: function (id) {
-                console.log("id:" + id);
-                this.$router.push({ name: 'edit', params : { taskId: id }} );
+            detail: function (name) {
+                console.log("name:" + name);
+                this.$router.push({ name: 'repository-detail', params : { name: name }} );
             },
         }
     }

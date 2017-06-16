@@ -25,6 +25,11 @@ var router = new VueRouter({
             name: 'home',
             path: '/',
             component: Home
+        },
+        {
+            name: 'repository-detail',
+            path: '/repository',
+            component: Home
         }
     ]
 })

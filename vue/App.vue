@@ -4,6 +4,8 @@
             <div class="container">
                 <router-link to="/" class="navbar-brand">Virtual Stack</router-link>
                 <ul class="nav navbar-nav pull-right">
+                    <li><router-link to="/">Dashboard</router-link></li>
+                    <li><router-link to="/">Create</router-link></li>
                 </ul>
             </div>
         </header>
