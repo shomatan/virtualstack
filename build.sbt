@@ -1,10 +1,21 @@
 name := "virtualstack"
 
-version := "1.0-SNAPSHOT"
+lazy val commonSettings = Seq(
+  organization := "shoma.me",
+  version := "0.1.0",
+  scalaVersion := "2.11.11"
+)
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file("."))
+  .enablePlugins(PlayScala)
+  .aggregate(gitbucket)
+  .dependsOn(gitbucket)
+  .settings(
+    commonSettings
+  )
 
-scalaVersion := "2.11.11"
+lazy val gitbucket = (project in file("modules/gitbucket-scala-client"))
+  .settings(commonSettings)
 
 libraryDependencies ++= Seq(
   cache,
