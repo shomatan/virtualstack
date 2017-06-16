@@ -10,6 +10,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Home from './components/Home.vue'
 import Detail from './components/repositories/Detail.vue'
+import Add from './components/repositories/Add.vue'
 
 import VueRouter from 'vue-router'
 
@@ -31,6 +32,11 @@ var router = new VueRouter({
             name: 'repository-detail',
             path: '/repository/:name',
             component: Detail
+        },
+        {
+            name: 'add',
+            path: '/add',
+            component: Add
         }
     ]
 })

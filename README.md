@@ -16,3 +16,23 @@ This application is used to showcase the Playframework as well as Vue.js. This a
 - [Bootstrap](http://www.bootstrap.com) 
 - [Slick](http://www.slick.typesafe.com)
 
+
+## Development
+
+### Requirements
+
+- sbt
+- nodejs
+- docker
+
+### Setup
+
+    docker-compose up -d
+    sbt "~run"
+    webpack --watch
+
+
+- Virtual Stack [http://localhost:8080]
+- GitBucket [http://localhost:8081]
+- Jenkins [http://localhost:8082]
+- Docker registry [http://localhost:5000]
