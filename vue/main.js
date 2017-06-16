@@ -9,6 +9,7 @@ import Vue from 'vue'
 // app
 import App from './App.vue'
 import Home from './components/Home.vue'
+import Detail from './components/repositories/Detail.vue'
 
 import VueRouter from 'vue-router'
 
@@ -28,8 +29,8 @@ var router = new VueRouter({
         },
         {
             name: 'repository-detail',
-            path: '/repository',
-            component: Home
+            path: '/repository/:name',
+            component: Detail
         }
     ]
 })

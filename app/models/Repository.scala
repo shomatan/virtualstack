@@ -1,3 +1,3 @@
 package com.github.virtualstack.models
 
-case class Repository(name: String)
+case class Repository(name: String, tag: String = "")

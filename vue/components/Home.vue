@@ -9,7 +9,7 @@
                     <tbody v-for="r in repositories">
                         <tr>
                             <td>{{ r.name }}</td>
-                            <td @click="detail(r.name)">DETAILS</td>
+                            <td><router-link :to="{ name: 'repository-detail', params: { name: r.name }}">DETAILS</router-link></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,10 +52,6 @@
                         self.fetchError = error
                         self.isLoading = false
                     })
-            },
-            detail: function (name) {
-                console.log("name:" + name);
-                this.$router.push({ name: 'repository-detail', params : { name: name }} );
             },
         }
     }
