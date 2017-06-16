@@ -5,7 +5,7 @@ import io.circe._
 
 trait RepositoryService extends HttpService {
 
-  def getPublicRepositories(): List[Repository] = {
+  def getRepositories(): List[Repository] = {
     parser.decode[List[Repository]](httpClient.get("/user/repos")).right.get
   }
 
