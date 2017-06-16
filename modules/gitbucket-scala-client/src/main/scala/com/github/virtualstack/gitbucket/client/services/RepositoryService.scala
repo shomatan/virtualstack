@@ -1,8 +1,7 @@
 package com.github.virtualstack.gitbucket.client.services
 
-import com.github.virtualstack.gitbucket.client.{HttpService, Repository}
+import com.github.virtualstack.gitbucket.client.Repository
 import io.circe._
-import io.circe.generic.auto._
 
 trait RepositoryService extends HttpService {
 

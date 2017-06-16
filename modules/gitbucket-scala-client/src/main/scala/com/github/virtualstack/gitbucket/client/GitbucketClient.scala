@@ -1,6 +1,6 @@
 package com.github.virtualstack.gitbucket.client
 
-import  com.github.virtualstack.gitbucket.client.services._
+import com.github.virtualstack.gitbucket.client.services._
 
 class GitbucketClient extends GitbucketClientBase
   with RepositoryService

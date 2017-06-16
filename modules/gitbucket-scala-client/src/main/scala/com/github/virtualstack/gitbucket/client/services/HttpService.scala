@@ -1,4 +1,4 @@
-package com.github.virtualstack.gitbucket.client
+package com.github.virtualstack.gitbucket.client.services
 
 trait HttpService {
   val httpClient: HttpClient = HttpClient
