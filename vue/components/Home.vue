@@ -3,11 +3,79 @@
         <div class="heading">
             <h1>Repositories</h1>
         </div>
-        <h2></h2>
         <div>
             <div class="panel panel-default">
-                <div class="panel-heading">Images</div>
+                <table class="task-tbl table table-striped table-hover">
+                    <tbody v-for="r in repositories">
+                        <tr>
+                            <td>{{ r.name }}</td>
+                            <td @click="edit(r.name)">DETAILS</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import axios from 'axios';
+    export default {
+
+        data: function () {
+            return {
+                isLoading: false,
+                repositories: [],
+                error: null
+            }
+        },
+
+        created: function () {
+            this.fetchData()
+        },
+
+        watch: {
+            '$route': 'fetchData'
+        },
+
+        methods: {
+            fetchData: function () {
+                var self = this
+                self.isLoading = true
+                axios.get('/api/v1/repositories')
+                    .then(function (response) {
+                        self.repositories = response.data
+                        self.isLoading = false
+                        console.log("repositories: " + JSON.stringify(self.repositories));
+                    })
+                    .catch(function (error) {
+                        self.fetchError = error
+                        self.isLoading = false
+                    })
+            },
+            edit: function (id) {
+                console.log("id:" + id);
+                this.$router.push({ name: 'edit', params : { taskId: id }} );
+            },
+        }
+    }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+    .heading {
+        overflow: auto;
+        padding-bottom: 10px;
+    }
+    .heading h1 {
+        float: left;
+    }
+    .logo {
+        width: 136px;
+        height: 136px;
+        float: right;
+    }
+    .task-tbl tr {
+        cursor: pointer;
+    }
+</style>
