@@ -1,4 +1,4 @@
-package controllers
+package com.github.virtualstack.controllers
 
 import play.api.mvc._
 import play.api.routing._
@@ -6,11 +6,11 @@ import play.api.routing._
 class JsRouter extends Controller {
 
   def javascriptRoutes = Action { implicit request =>
-    import routes.javascript._
+    import api.v1.routes.javascript._
     Ok(
       JavaScriptReverseRouter("jsRoutes")(
-        RepositoryController.all
-
+        RepositoryController.all,
+        ImageController.detail
       )
     ).as("text/javascript")
   }
