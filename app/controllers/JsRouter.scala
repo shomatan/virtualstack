@@ -11,7 +11,8 @@ class JsRouter extends Controller {
       JavaScriptReverseRouter("jsRoutes")(
         ImageRepositoryController.all,
         ImageRepositoryController.detail,
-        GitRepositoryController.all
+        GitRepositoryController.all,
+        UserController.add
       )
     ).as("text/javascript")
   }

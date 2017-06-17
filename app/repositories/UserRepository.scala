@@ -47,9 +47,9 @@ class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigPro
     def password = column[String]("password")
     def gitbucketToken = column[String]("gitbucket_token")
     def createdAt = column[DateTime]("created_at")
-    def deadlineAt = column[DateTime]("deadline_at")
+    def updatedAt = column[DateTime]("updated_at")
 
-    def * = (id.?, name, password, gitbucketToken, createdAt, deadlineAt) <> (User.tupled, User.unapply _)
+    def * = (id.?, name, password, gitbucketToken, createdAt, updatedAt) <> (User.tupled, User.unapply _)
   }
 
 }
