@@ -3,11 +3,25 @@ version: '2'
 services:
   # virtaul stack app ↓
 
+  virtualstack-db:
+    container_name: vs-db
+    image: postgres:9.5-alpine
+    environment:
+      POSTGRES_DB: virtualstack
+      POSTGRES_USER: virtualstack
+      POSTGRES_PASSWORD: virtualstack
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/virtualstack-db:/var/lib/postgresql/data
+    restart: always
+
   gitbucket:
     container_name: vs-gitbucket
     image: shomatan/gitbucket:4.13-alpine
     environment:
       GITBUCKET_PORT: 80
+      GITBUCKET_DB_HOST: gitbucket-db
     ports:
       - "8081:80"
       - "29418:29418"
@@ -18,7 +32,7 @@ services:
       - ./volumes/gitbucket/data:/gitbucket/data
     restart: always
 
-  db:
+  gitbucket-db:
     container_name: vs-postgres
     image: postgres:9.5-alpine
     environment:
@@ -26,7 +40,7 @@ services:
       POSTGRES_USER: gitbucket
       POSTGRES_PASSWORD: gitbucket
     volumes:
-      - ./volumes/postgres:/var/lib/postgresql/data
+      - ./volumes/gitbucket-db:/var/lib/postgresql/data
     restart: always
 
   jenkins:

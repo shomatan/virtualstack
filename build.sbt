@@ -24,7 +24,7 @@ libraryDependencies ++= Seq(
   "org.scalatestplus.play"  %% "scalatestplus-play"     % "1.5.1" % Test,
   "com.typesafe.play"       %% "play-slick"             % "2.0.0",
   "com.typesafe.play"       %% "play-slick-evolutions"  % "2.0.0",
-  "mysql"                   %  "mysql-connector-java"   % "5.1.36"
+  "org.postgresql"          %  "postgresql"             % "42.1.1"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
