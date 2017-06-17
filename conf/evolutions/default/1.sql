@@ -1,8 +1,8 @@
 # --- !Ups
 
 create table users (
-  id SERIAL,
-  username varchar(255) not null,
+  id bigserial,
+  name varchar(255) not null,
   password varchar(255) not null,
   gitbucket_token text,
   created_at bigint not null,
