@@ -9,8 +9,8 @@ class JsRouter extends Controller {
     import api.v1.routes.javascript._
     Ok(
       JavaScriptReverseRouter("jsRoutes")(
-        RepositoryController.all,
-        RepositoryController.detail
+        ImageRepositoryController.all,
+        ImageRepositoryController.detail
       )
     ).as("text/javascript")
   }

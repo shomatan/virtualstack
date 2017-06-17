@@ -42,7 +42,9 @@
             fetchData: function () {
                 var self = this
                 self.isLoading = true
-                axios.get('/api/v1/repositories')
+                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all()
+                console.log("Repository API:" + m.url)
+                axios.get(m.url)
                     .then(function (response) {
                         self.repositories = response.data
                         self.isLoading = false

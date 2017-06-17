@@ -6,11 +6,11 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
-GET     /api/v1/repositories        com.github.virtualstack.controllers.api.v1.RepositoryController.all
-GET     /api/v1/repositories/:name  com.github.virtualstack.controllers.api.v1.RepositoryController.detail(name: String)
+GET     /api/v1/repositories        com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all
+GET     /api/v1/repositories/:name  com.github.virtualstack.controllers.api.v1.ImageRepositoryController.detail(name: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-#Javascript Routes
+# Javascript Routes
 GET     /javascriptRoutes           com.github.virtualstack.controllers.JsRouter.javascriptRoutes

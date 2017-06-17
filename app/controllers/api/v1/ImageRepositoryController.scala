@@ -13,7 +13,7 @@ import play.api.libs.functional.syntax._
 import play.api.mvc.{Action, Controller}
 
 @Singleton
-class RepositoryController @Inject()(ws: WSClient) extends Controller {
+class ImageRepositoryController @Inject()(ws: WSClient) extends Controller {
 
   implicit val context = play.api.libs.concurrent.Execution.Implicits.defaultContext
 
