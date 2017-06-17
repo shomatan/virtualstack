@@ -1,4 +1,4 @@
-package models
+package com.github.virtualstack.models
 
 import org.joda.time.DateTime
 
