@@ -21,7 +21,7 @@
         created: function () {
             var self = this
             if (typeof self.$route.params.name !== 'undefined') {
-                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.RepositoryController.detail(this.$route.params.name)
+                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.detail(this.$route.params.name)
                 console.log("Repository API:" + m.url)
                 axios.get(m.url)
                     .then(function (response) {
