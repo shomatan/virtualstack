@@ -13,13 +13,12 @@ trait HttpClient {
 
   val baseUrl = "http://localhost:8081/api/v3"
 
-  def get(endpoint: String): String = {
+  def get(endpoint: String): Future[String] = {
     val request = url(baseUrl + endpoint)
       .GET
       .setContentType("application/json", "UTF-8")
-      .setHeader("Authorization", "token 458fe9979f939e2d73fbc594b5109a3b993ecf4e")
-    val response = Http(request).apply()
-    response.getResponseBody
+      .setHeader("Authorization", "token a2a1821e817f1e557dcfe37202b18fddcd75b866")
+    Http(request OK as.String)
   }
 
   def post(endpoint: String): String = {

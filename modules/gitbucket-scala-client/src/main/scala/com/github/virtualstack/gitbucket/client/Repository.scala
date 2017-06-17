@@ -11,7 +11,6 @@ case class Repository(
  )
 
 object Repository {
- implicit val decodeUser: Decoder[Repository] =
-  Decoder.forProduct5("name", "full_name", "description", "private", "default_branch")(Repository.apply)
-
+  implicit val decodeUser: Decoder[Repository] =
+    Decoder.forProduct5("name", "full_name", "description", "private", "default_branch")(Repository.apply)
 }

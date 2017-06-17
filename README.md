@@ -22,8 +22,8 @@ This application is used to showcase the Playframework as well as Vue.js. This a
 ### Requirements
 
 - sbt
-- nodejs
-- docker
+- NodeJs
+- Docker
 
 ### Setup
 
