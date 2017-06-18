@@ -6,7 +6,6 @@ import com.github.virtualstack.models.{RegistryApiError, Repository, Tag}
 import com.github.virtualstack.utils.HttpRequest
 import play.api.libs.ws._
 import play.api.libs.json._
-import play.api.libs.functional.syntax._
 import play.api.mvc.{Action, Controller}
 
 @Singleton
