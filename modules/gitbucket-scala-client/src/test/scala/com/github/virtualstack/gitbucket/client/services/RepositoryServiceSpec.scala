@@ -4,6 +4,8 @@ import org.scalatest._
 import org.scalatest.mockito.MockitoSugar
 import org.mockito.Mockito._
 
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class RepositoryServiceSpec extends FlatSpec with MockitoSugar {
 
@@ -11,15 +13,16 @@ class RepositoryServiceSpec extends FlatSpec with MockitoSugar {
     val service = new RepositoryService() {
       override val httpClient: HttpClient = {
         val m = mock[HttpClient]
-        when(m.get("/user/repos")).thenReturn(source)
+        when(m.get("/user/repos")).thenReturn(Future(source))
         m
       }
     }
 
-    val actual = service.getRepositories()
-    assert(1 == actual.length)
-    assert("Hello-World" == actual.head.name)
-    assert("octocat/Hello-World" == actual.head.fullName)
+    service.getRepositories().map { actual =>
+      assert(1 == actual.length)
+      assert("Hello-World" == actual.head.name)
+      assert("octocat/Hello-World" == actual.head.fullName)
+    }
   }
 
   private val source: String = {
