@@ -20,11 +20,13 @@
 
 <script>
     import axios from 'axios';
+
     export default {
 
         data: function () {
             return {
                 isLoading: false,
+                interval: null,
                 repositories: [],
                 error: null
             }
@@ -32,6 +34,10 @@
 
         created: function () {
             this.fetchData()
+
+            this.interval = setInterval(function () {
+                this.fetchData();
+            }.bind(this), 10000);
         },
 
         watch: {
@@ -55,6 +61,9 @@
                         self.isLoading = false
                     })
             },
+        },
+        beforeDestroy: function(){
+            clearInterval(this.interval);
         }
     }
 </script>
