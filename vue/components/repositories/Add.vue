@@ -3,10 +3,16 @@
         <div class="heading">
             <h1>Gitbucket</h1>
         </div>
-        <h2>{{ repositories.length }}</h2>
+        <h3>Found {{ repositories.length }} repositories</h3>
         <div>
             <div class="panel panel-default">
                 <table class="task-tbl table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Git repository name</th>
+                            <th>Default branch</th>
+                        </tr>
+                    </thead>
                     <tbody v-for="r in repositories">
                         <tr>
                             <td>{{ r.name }}</td>
