@@ -30,16 +30,19 @@ This is a project under development. Please refer to [TODO.md](./TODO.md).
 ### Home
 
 Retrieve and display the repository owned by the user from the Docker registry API.
+
 ![Home](doc/img/home.png)
 
 ### Repository details
 
 Retrieve and display the specified repository details from the Docker registry API.
+
 ![Repository detail](doc/img/detail.png)
 
 ### Add repository
 
 Get the repository on Gitbucket from the API and select the repository to be automatically built.
+
 ![Add repository](doc/img/add_repo.png)
 
 ## Development
