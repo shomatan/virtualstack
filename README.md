@@ -1,6 +1,7 @@
 # VirtualStack
 
-`VirtualStack` is a simple Docker registry, to enable automated build with jenkins and gitbucket.
+
+`VirtualStack` is a simple Docker registry (v2) that provides user authentication and enables automatic build.
 
 This application is used to showcase the Playframework as well as Vue.js. This application makes use of the following:
 
@@ -17,12 +18,18 @@ This application is used to showcase the Playframework as well as Vue.js. This a
 - [Slick](http://www.slick.typesafe.com)
 
 
+`VirtualStack` enables automatic build using Jenkins and GitBucket.
+
+## Architecture
+
+![Architecture](doc/img/architecture.png)
+
 ## Development
 
 ### Requirements
 
 - sbt
-- NodeJs
+- Node.js
 - Docker
 
 ### Setup
@@ -32,7 +39,7 @@ This application is used to showcase the Playframework as well as Vue.js. This a
     webpack --watch
 
 
-- Virtual Stack [http://localhost:8080]
+- Virtual Stack [http://localhost:9000]
 - GitBucket [http://localhost:8081]
 - Jenkins [http://localhost:8082]
 - Docker registry [http://localhost:5000]
