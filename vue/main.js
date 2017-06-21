@@ -6,11 +6,6 @@ import Vue from 'vue'
 //import lang from 'element-ui/lib/locale/lang/en'
 //import locale from 'element-ui/lib/locale'
 
-// app
-import App from './App.vue'
-import Home from './components/Home.vue'
-import Detail from './components/repositories/Detail.vue'
-import Add from './components/repositories/Add.vue'
 
 import VueRouter from 'vue-router'
 
@@ -26,17 +21,17 @@ var router = new VueRouter({
         {
             name: 'home',
             path: '/',
-            component: Home
+            component: require('./components/Home.vue')
         },
         {
             name: 'repository-detail',
             path: '/repository/:name',
-            component: Detail
+            component: require('./components/repositories/Detail.vue')
         },
         {
             name: 'add',
             path: '/add',
-            component: Add
+            component: require('./components/repositories/Add.vue')
         }
     ]
 })
@@ -45,5 +40,5 @@ new Vue({
     el: '#app',
     router: router,
     template: '<App/>',
-    components: { App }
+    components: require('./App.vue')
 })
