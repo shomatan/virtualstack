@@ -16,7 +16,9 @@ Make the service like `DockerHub`.
 - Understand how to access repositories with Gitbucket API.
     - [WIP] Create gitbucket-client.
 - Implement API server.
-    - User authentication
+    - [WIP]User authentication
+        - [done] 6/22 JWT auth controller
+        - Vue.js JWT auth
     - [WIP] Modeling 
     - [WIP] Link to `docker-registry`
 - Customize ready-to-use docker image for each service. 

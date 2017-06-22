@@ -1,6 +1,11 @@
 package controllers
 
 import javax.inject._
+
+import com.github.virtualstack.utils.authentication.DefaultEnv
+
+import com.mohiva.play.silhouette.api.{LogoutEvent, Silhouette}
+
 import play.api._
 import play.api.mvc._
 
@@ -9,7 +14,7 @@ import play.api.mvc._
  * application's home page.
  */
 @Singleton
-class HomeController @Inject() extends Controller {
+class HomeController @Inject() (val silhouette: Silhouette[DefaultEnv]) extends Controller {
 
   /**
    * Create an Action to render an HTML page.
@@ -20,5 +25,10 @@ class HomeController @Inject() extends Controller {
    */
   def index = Action { implicit request =>
     Ok(views.html.index())
+  }
+
+  def signOut = silhouette.SecuredAction.async { implicit request =>
+    silhouette.env.eventBus.publish(LogoutEvent(request.identity, request))
+    silhouette.env.authenticatorService.discard(request.authenticator, Ok)
   }
 }

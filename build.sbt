@@ -17,14 +17,27 @@ lazy val root = (project in file("."))
 lazy val gitbucket = (project in file("modules/gitbucket-scala-client"))
   .settings(commonSettings)
 
+val silhouetteVer = "4.0.0"
+
 libraryDependencies ++= Seq(
   cache,
   ws,
   filters,
-  "org.scalatestplus.play"  %% "scalatestplus-play"     % "1.5.1" % Test,
-  "com.typesafe.play"       %% "play-slick"             % "2.0.0",
-  "com.typesafe.play"       %% "play-slick-evolutions"  % "2.0.0",
-  "org.postgresql"          %  "postgresql"             % "42.1.1"
+  "com.typesafe.play"       %% "play-slick"                       % "2.0.0",
+  "com.typesafe.play"       %% "play-slick-evolutions"            % "2.0.0",
+  "org.postgresql"          %  "postgresql"                       % "42.1.1",
+  "net.codingwell"          %% "scala-guice"                      % "4.1.0",
+  "com.iheart"              %% "ficus"                            % "1.2.6",        // config lib, used by Silhouette,
+  "com.mohiva"              %% "play-silhouette"                  % "4.0.0",
+  "com.mohiva"              %% "play-silhouette"                  % silhouetteVer,
+  "com.mohiva"              %% "play-silhouette-password-bcrypt"  % silhouetteVer,
+  "com.mohiva"              %% "play-silhouette-crypto-jca"       % silhouetteVer,
+  "com.mohiva"              %% "play-silhouette-persistence"      % silhouetteVer,
+  "com.mohiva"              %% "play-silhouette-testkit"          % silhouetteVer   % "test",
+  "org.scalatestplus.play"  %% "scalatestplus-play"               % "1.5.1"   % Test,
+  "org.slf4j"               %  "slf4j-nop"                        % "1.6.4"
 )
+
+resolvers := ("Atlassian Releases" at "https://maven.atlassian.com/public/") +: resolvers.value
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
