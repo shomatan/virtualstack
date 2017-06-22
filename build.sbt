@@ -26,7 +26,8 @@ libraryDependencies ++= Seq(
   "org.postgresql"          %  "postgresql"               % "42.1.1",
   "com.mohiva"              %% "play-silhouette"          % "4.0.0",
   "com.mohiva"              %% "play-silhouette-testkit"  % "4.0.0"   % "test",
-  "org.scalatestplus.play"  %% "scalatestplus-play"       % "1.5.1"   % Test
+  "org.scalatestplus.play"  %% "scalatestplus-play"       % "1.5.1"   % Test,
+  "org.slf4j"               %  "slf4j-nop"                % "1.6.4"
 )
 
 resolvers := ("Atlassian Releases" at "https://maven.atlassian.com/public/") +: resolvers.value
