@@ -2,7 +2,7 @@ package com.github.virtualstack.models
 
 import java.util.UUID
 
-import com.mohiva.play.silhouette.api.LoginInfo
+import com.mohiva.play.silhouette.api.{Identity, LoginInfo}
 import com.mohiva.play.silhouette.api.util.PasswordInfo
 import org.joda.time.DateTime
 
@@ -16,4 +16,4 @@ case class User (
   passwordInfo: Option[PasswordInfo],
   createdAt: DateTime = DateTime.now(),
   updatedAt: DateTime
-)
+) extends Identity
