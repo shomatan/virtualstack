@@ -1,6 +1,7 @@
 package com.github.virtualstack.repositories
 
 import java.sql.Timestamp
+
 import java.util.UUID
 import javax.inject.Inject
 
