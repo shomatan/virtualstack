@@ -7,8 +7,6 @@
 GET     /                           controllers.HomeController.index
 
 
-POST    /api/v1/users/add           com.github.virtualstack.controllers.api.v1.UserController.add
-
 GET     /api/v1/repositories        com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all
 GET     /api/v1/repositories/:name  com.github.virtualstack.controllers.api.v1.ImageRepositoryController.detail(name: String)
 

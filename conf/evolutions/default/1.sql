@@ -6,12 +6,13 @@ create table users (
   last_name VARCHAR,
   full_name VARCHAR,
   email VARCHAR,
-  rate_limit BIGINT NOT NULL,
+  created_at BIGINT NOT NULL,
+  updated_at BIGINT NOT NULL,
   primary key (user_id)
 );
 
 create table login_info (
-  id bigserial,
+  id BIGSERIAL,
   provider_id VARCHAR NOT NULL,
   provider_key VARCHAR NOT NULL,
   primary key (id)
