@@ -9,6 +9,7 @@ This application is used to showcase the Playframework as well as Vue.js. This a
   - [Javascript Routing](https://www.playframework.com/documentation/2.5.x/ScalaJavascriptRouting)
   - [JSON Automated Mapping](https://www.playframework.com/documentation/2.5.x/ScalaJsonAutomated)
   - [Scala Forms](https://www.playframework.com/documentation/2.5.x/ScalaForms)
+  - [Silhouette JWT Auth](https://github.com/mohiva/play-silhouette-seed)
 - [Vue.js](https://vuejs.org/)
   - [Vue Router](http://router.vuejs.org/en/index.html)
   - [axios](https://github.com/mzabriskie/axios)
