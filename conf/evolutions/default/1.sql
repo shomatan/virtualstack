@@ -1,31 +1,28 @@
 # --- !Ups
 
 create table users (
-  id bigserial,
-  firstName VARCHAR,
-  lastName VARCHAR,
-  fullName VARCHAR,
+  user_id VARCHAR NOT NULL,
+  first_name VARCHAR,
+  last_name VARCHAR,
+  full_name VARCHAR,
   email VARCHAR,
-  avatarURL VARCHAR,
-  gitbucket_token text,
-  created_at bigint not null,
-  updated_at bigint not null,
-  primary key (id)
+  rate_limit BIGINT NOT NULL,
+  primary key (user_id)
 );
 
-create table login_infos (
+create table login_info (
   id bigserial,
   provider_id VARCHAR NOT NULL,
   provider_key VARCHAR NOT NULL,
   primary key (id)
 );
 
-create table user_login_infos (
+create table user_login_info (
   user_id VARCHAR NOT NULL,
   login_info_id BIGINT NOT NULL
 );
 
-create table password_infos (
+create table password_info (
   hasher VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
   salt VARCHAR,
@@ -34,7 +31,7 @@ create table password_infos (
 
 # --- !Downs
 
-drop table password_infos;
-drop table user_login_infos;
-drop table login_infos;
+drop table password_info;
+drop table user_login_info;
+drop table login_info;
 drop table users;
