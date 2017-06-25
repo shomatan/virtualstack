@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 
 // element-ui
 //import { DatePicker } from 'element-ui'
@@ -7,13 +9,14 @@ import Vue from 'vue'
 //import locale from 'element-ui/lib/locale'
 
 
-import VueRouter from 'vue-router'
+
 import App from './App.vue'
 import Http from './services/Http'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(Vuex)
 //Vue.use(DatePicker)
 //locale.use(lang)
 
