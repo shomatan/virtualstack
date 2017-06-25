@@ -9,6 +9,7 @@ import Vue from 'vue'
 
 import VueRouter from 'vue-router'
 import App from './App.vue'
+import Http from './services/Http'
 
 Vue.config.productionTip = false
 
@@ -41,5 +42,8 @@ new Vue({
     el: '#app',
     router: router,
     template: '<App/>',
-    components: { App }
+    components: { App },
+    created: function () {
+        Http.init()
+    },
 })
