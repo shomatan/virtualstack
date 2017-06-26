@@ -7,11 +7,13 @@ class JsRouter extends Controller {
 
   def javascriptRoutes = Action { implicit request =>
     import api.v1.routes.javascript._
+    import api.v1.auth.routes.javascript._
     Ok(
       JavaScriptReverseRouter("jsRoutes")(
         ImageRepositoryController.all,
         ImageRepositoryController.detail,
-        GitRepositoryController.all
+        GitRepositoryController.all,
+        SignInController.submit
       )
     ).as("text/javascript")
   }

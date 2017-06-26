@@ -4,12 +4,17 @@ import javax.inject.{Inject, Singleton}
 
 import com.github.virtualstack.models.{RegistryApiError, Repository, Tag}
 import com.github.virtualstack.utils.HttpRequest
+import com.github.virtualstack.utils.authentication.DefaultEnv
+
+import com.mohiva.play.silhouette.api.Silhouette
 import play.api.libs.ws._
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 
 @Singleton
-class ImageRepositoryController @Inject()(ws: WSClient) extends Controller {
+class ImageRepositoryController @Inject()(
+  ws: WSClient,
+  val silhouette: Silhouette[DefaultEnv]) extends Controller {
 
   implicit val context = play.api.libs.concurrent.Execution.Implicits.defaultContext
 
@@ -27,7 +32,7 @@ class ImageRepositoryController @Inject()(ws: WSClient) extends Controller {
   // Repository
   implicit def repositoryWrites = Json.writes[Repository]
 
-  def all = Action.async { implicit request =>
+  def all = silhouette.SecuredAction.async { implicit request =>
 
     val complexRequest = HttpRequest.create(ws, "_catalog")
 
