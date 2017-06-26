@@ -13,7 +13,8 @@ class JsRouter extends Controller {
         ImageRepositoryController.all,
         ImageRepositoryController.detail,
         GitRepositoryController.all,
-        SignInController.submit
+        SignInController.submit,
+        SignUpController.submit
       )
     ).as("text/javascript")
   }
