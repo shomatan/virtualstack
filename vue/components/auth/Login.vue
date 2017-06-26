@@ -4,11 +4,39 @@
             <h1>Login</h1>
         </div>
         <div>
-            <form @submit.prevent="login({ email, password })">
-                <input type="text" placeholder="email" v-model="email">
-                <input type="password" placeholder="password" v-model="password">
-                <button type="submit">Login</button>
-            </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Sign Up</div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                    <div class="col-md-6">
+                                        <input id="email" type="email" v-model="email" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="col-md-4 control-label">Password</label>
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" v-model="password" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <button v-on:click="login" class="btn btn-primary">
+                                            Login
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

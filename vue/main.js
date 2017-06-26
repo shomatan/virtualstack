@@ -72,13 +72,11 @@ const store = new Vuex.Store({
             return new Promise(resolve => {
                 setTimeout(() => {
                     var login_param = {email: creds.email, password: creds.password, rememberMe: false }
-                    console.log(login_param)
                     var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignInController.submit()
                     Http.post(m.url, login_param, res => {
                         commit(LOGIN_SUCCESS);
                         resolve();
                     })
-
                 }, 1000);
             });
         },
