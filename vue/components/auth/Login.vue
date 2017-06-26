@@ -11,6 +11,10 @@
                             <div class="panel-heading">Login</div>
                             <div class="panel-body">
 
+                                <div class="alert alert-danger" role="alert" v-if="error !== null">
+                                    Wrong email or password.
+                                </div>
+
                                 <div class="form-group">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
                                     <div class="col-md-6">
@@ -42,24 +46,29 @@
 </template>
 
 <script>
+    import Http from '../../services/Http'
 
     export default {
 
         data() {
             return {
                 email: "",
-                password: ""
+                password: "",
+                error: null,
             }
         },
 
         methods: {
             login() {
-                this.$store.dispatch("login", {
-                    email: this.email,
-                    password: this.password
-                }).then(() => {
-                    this.$router.push("/")
-                });
+                var login_param = {email: this.email, password: this.password, rememberMe: false }
+                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignInController.submit()
+                Http.post(m.url, login_param, res => {
+                    this.$store.dispatch("login").then(() => {
+                        this.$router.push("/")
+                    });
+                }, error => {
+                    this.error = error
+                })
             },
             logout() {
                 this.$store.dispatch('logout');
