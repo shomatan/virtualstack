@@ -1,9 +1,14 @@
 <template>
     <div>
         <div class="heading">
-            <h1>Repositories</h1>
+            <template v-if="isLoggedIn">
+                <h1>Repositories</h1>
+            </template>
+            <template v-else>
+                <p>Dev-test pipeline automation and private registries</p>
+            </template>
         </div>
-        <div>
+        <div v-if="isLoggedIn">
             <div class="panel panel-default">
                 <table class="task-tbl table table-striped table-hover">
                     <tbody v-for="r in repositories">
@@ -13,6 +18,55 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div v-else>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Sign Up</div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-4 control-label">First name</label>
+                                    <div class="col-md-6">
+                                        <input id="first_name" type="text" v-model="firstName" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-4 control-label">Last name</label>
+                                    <div class="col-md-6">
+                                        <input id="last_name" type="text" v-model="lastName" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                    <div class="col-md-6">
+                                        <input id="email" type="email" v-model="email" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="col-md-4 control-label">Password</label>
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" v-model="password" class="form-control" required autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <button v-on:click="create" class="btn btn-primary">
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -28,7 +82,11 @@
                 isLoading: false,
                 interval: null,
                 repositories: [],
-                error: null
+                error: null,
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
             }
         },
 
@@ -46,6 +104,8 @@
 
         methods: {
             fetchData: function () {
+                if( ! this.$store.getters.isLoggedIn) return
+
                 var self = this
                 self.isLoading = true
                 var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all()
@@ -55,9 +115,33 @@
                     self.isLoading = false
                     console.log("repositories: " + JSON.stringify(self.repositories));
                 })
-
             },
+
+            create () {
+                var signup_param = {firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password }
+                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
+                Http.post(m.url, signup_param, response => {
+
+                    this.$store.dispatch("login", {
+                        email: this.email,
+                        password: this.password
+                    }).then(() => {
+                        this.firstName = '';
+                        this.lastName = '';
+                        this.email =  '';
+                        this.password = '';
+                        this.$router.push("/")
+                    });
+                })
+            }
         },
+
+        computed: {
+            isLoggedIn() {
+                return this.$store.getters.isLoggedIn;
+            }
+        },
+
         beforeDestroy: function(){
             clearInterval(this.interval);
         }
