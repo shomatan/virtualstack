@@ -32,7 +32,8 @@ export default {
      * Init the service.
      */
     init () {
-        axios.defaults.baseURL = '/api/v1'
+        // JsRouter has already defined
+        //axios.defaults.baseURL = '/api/v1'
 
         // Intercept the request to make sure the token is injected into the header.
         axios.interceptors.request.use(config => {
@@ -43,8 +44,10 @@ export default {
         axios.interceptors.response.use(response => {
             // ...get the token from the header or response data if exists, and save it.
             const token = response.headers['X-Auth-Token'] || response.data['token']
+
             if (token) {
                 localStorage.setItem('jwt-token', token)
+                console.log(token)
             }
             return response
         }, error => {
