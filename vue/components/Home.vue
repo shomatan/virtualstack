@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import Http from '../services/Http'
 
     export default {
 
@@ -50,16 +50,12 @@
                 self.isLoading = true
                 var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all()
                 console.log("Repository API:" + m.url)
-                axios.get(m.url)
-                    .then(function (response) {
-                        self.repositories = response.data
-                        self.isLoading = false
-                        console.log("repositories: " + JSON.stringify(self.repositories));
-                    })
-                    .catch(function (error) {
-                        self.fetchError = error
-                        self.isLoading = false
-                    })
+                Http.get(m.url, response => {
+                    self.repositories = response.data
+                    self.isLoading = false
+                    console.log("repositories: " + JSON.stringify(self.repositories));
+                })
+
             },
         },
         beforeDestroy: function(){

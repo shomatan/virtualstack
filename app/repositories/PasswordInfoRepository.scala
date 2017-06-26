@@ -8,7 +8,6 @@ import com.mohiva.play.silhouette.api.util.PasswordInfo
 import com.mohiva.play.silhouette.persistence.daos.DelegableAuthInfoDAO
 import com.github.virtualstack.models.User
 import play.api.db.slick.DatabaseConfigProvider
-import com.github.virtualstack.repositories.RepositorySlick
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
