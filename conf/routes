@@ -6,6 +6,7 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
+PUT     /api/v1/profile             controllers.HomeController.profile
 GET     /api/v1/repositories        com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all
 GET     /api/v1/repositories/:name  com.github.virtualstack.controllers.api.v1.ImageRepositoryController.detail(name: String)
 
