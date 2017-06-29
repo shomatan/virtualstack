@@ -1,4 +1,4 @@
-package controllers
+package com.github.virtualstack.controllers
 
 import javax.inject._
 
