@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 
 // element-ui
 //import { DatePicker } from 'element-ui'
@@ -9,7 +8,6 @@ import Vuex from 'vuex'
 //import locale from 'element-ui/lib/locale'
 
 Vue.use(VueRouter)
-Vue.use(Vuex)
 
 import App from './App.vue'
 import { http } from './services'
