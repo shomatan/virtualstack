@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="heading">
-            <template v-if="isLoggedIn">
+            <template v-if="userState.authenticated">
                 <h1>Repositories</h1>
             </template>
             <template v-else>
                 <p>Dev-test pipeline automation and private registries</p>
             </template>
         </div>
-        <div v-if="isLoggedIn">
+        <div v-if="userState.authenticated">
             <div class="panel panel-default">
                 <table class="task-tbl table table-striped table-hover">
                     <tbody v-for="r in repositories">
@@ -73,79 +73,78 @@
 </template>
 
 <script>
-    import Http from '../services/Http'
+import { http } from '../services'
+import { userStore } from '../stores'
 
-    export default {
+export default {
 
-        data: function () {
-            return {
-                isLoading: false,
-                interval: null,
-                repositories: [],
-                error: null,
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: '',
-            }
-        },
-
-        created: function () {
-            this.fetchData()
-
-            this.interval = setInterval(function () {
-                this.fetchData();
-            }.bind(this), 10000);
-        },
-
-        watch: {
-            '$route': 'fetchData'
-        },
-
-        methods: {
-            fetchData: function () {
-                if( ! this.$store.getters.isLoggedIn) return
-
-                var self = this
-                self.isLoading = true
-                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all()
-                console.log("Repository API:" + m.url)
-                Http.get(m.url, response => {
-                    self.repositories = response.data
-                    self.isLoading = false
-                    console.log("repositories: " + JSON.stringify(self.repositories));
-                })
-            },
-
-            create () {
-                var signup_param = {firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password }
-                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
-                Http.post(m.url, signup_param, response => {
-
-                    this.$store.dispatch("login", {
-                        email: this.email,
-                        password: this.password
-                    }).then(() => {
-                        this.firstName = '';
-                        this.lastName = '';
-                        this.email =  '';
-                        this.password = '';
-                        this.$router.push("/")
-                    });
-                })
-            }
-        },
-
-        computed: {
-            isLoggedIn() {
-                return this.$store.getters.isLoggedIn;
-            }
-        },
-
-        beforeDestroy: function(){
-            clearInterval(this.interval);
-        }
+  data: function () {
+    return {
+      isLoading: false,
+      interval: null,
+      repositories: [],
+      error: null,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      userState: userStore.state
     }
+  },
+
+  created: function () {
+    this.fetchData()
+
+    this.interval = setInterval(function () {
+      this.fetchData();
+    }.bind(this), 10000);
+  },
+
+  watch: {
+    '$route': 'fetchData'
+  },
+
+  methods: {
+    fetchData: function () {
+
+      if( ! this.userState.authenticated) return
+
+      var self = this
+      self.isLoading = true
+      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all()
+      console.log("Repository API:" + m.url)
+      http.get(m.url, response => {
+        self.repositories = response.data
+        self.isLoading = false
+        console.log("repositories: " + JSON.stringify(self.repositories));
+      })
+    },
+
+    create () {
+      var signup_param = {firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password }
+      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
+
+
+      http.post(m.url, signup_param, response => {
+
+        this.$store.dispatch("login", {
+          email: this.email,
+          password: this.password
+        }).then(() => {
+          this.firstName = '';
+          this.lastName = '';
+          this.email =  '';
+          this.password = '';
+          this.$router.push("/")
+        });
+      })
+    }
+  },
+
+  beforeDestroy: function(){
+    clearInterval(this.interval);
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
