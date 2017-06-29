@@ -46,36 +46,36 @@
 </template>
 
 <script>
-    import Http from '../../services/Http'
+import { http } from '../../services'
 
-    export default {
+export default {
 
-        data() {
-            return {
-                email: "",
-                password: "",
-                error: null,
-            }
-        },
-
-        methods: {
-            login() {
-                var login_param = {email: this.email, password: this.password, rememberMe: false }
-                var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignInController.submit()
-                Http.post(m.url, login_param, res => {
-                    this.$store.dispatch("login").then(() => {
-                        this.$router.push("/")
-                    });
-                }, error => {
-                    this.error = error
-                })
-            },
-            logout() {
-                this.$store.dispatch('logout');
-            }
-        },
-
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: null,
     }
+  },
+
+  methods: {
+    login() {
+      var login_param = {email: this.email, password: this.password, rememberMe: false }
+      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignInController.submit()
+      http.post(m.url, login_param, res => {
+        this.$store.dispatch("login").then(() => {
+          this.$router.push("/")
+        });
+      }, error => {
+        this.error = error
+      })
+    },
+    logout() {
+      this.$store.dispatch('logout');
+    }
+  }
+
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

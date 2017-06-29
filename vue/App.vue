@@ -18,18 +18,18 @@
 </template>
 
 <script>
-    export default {
+export default {
 
-        methods: {
-            logout() {
-                this.$store.dispatch('logout');
-            }
-        },
-
-        computed: {
-            isLoggedIn() {
-                return this.$store.getters.isLoggedIn;
-            }
-        }
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
     }
+  },
+
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    }
+  }
+}
 </script>
