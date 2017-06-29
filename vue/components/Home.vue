@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="heading">
-            <template v-if="isLoggedIn">
+            <template v-if="userState.authenticated">
                 <h1>Repositories</h1>
             </template>
             <template v-else>
                 <p>Dev-test pipeline automation and private registries</p>
             </template>
         </div>
-        <div v-if="isLoggedIn">
+        <div v-if="userState.authenticated">
             <div class="panel panel-default">
                 <table class="task-tbl table table-striped table-hover">
                     <tbody v-for="r in repositories">
@@ -74,6 +74,7 @@
 
 <script>
 import { http } from '../services'
+import { userStore } from '../stores'
 
 export default {
 
@@ -87,6 +88,7 @@ export default {
       lastName: '',
       email: '',
       password: '',
+      userState: userStore.state
     }
   },
 
@@ -104,7 +106,8 @@ export default {
 
   methods: {
     fetchData: function () {
-    if( ! this.$store.getters.isLoggedIn) return
+
+      if( ! this.userState.authenticated) return
 
       var self = this
       self.isLoading = true
@@ -120,6 +123,8 @@ export default {
     create () {
       var signup_param = {firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password }
       var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
+
+
       http.post(m.url, signup_param, response => {
 
         this.$store.dispatch("login", {
@@ -133,12 +138,6 @@ export default {
           this.$router.push("/")
         });
       })
-    }
-  },
-
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
     }
   },
 

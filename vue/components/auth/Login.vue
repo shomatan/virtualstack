@@ -11,7 +11,7 @@
                             <div class="panel-heading">Login</div>
                             <div class="panel-body">
 
-                                <div class="alert alert-danger" role="alert" v-if="error !== null">
+                                <div class="alert alert-danger" role="alert" v-if="failed">
                                     Wrong email or password.
                                 </div>
 
@@ -47,6 +47,7 @@
 
 <script>
 import { http } from '../../services'
+import { userStore } from '../../stores'
 
 export default {
 
@@ -54,24 +55,19 @@ export default {
     return {
       email: "",
       password: "",
-      error: null,
+      failed: false,
     }
   },
 
   methods: {
     login() {
-      var login_param = {email: this.email, password: this.password, rememberMe: false }
-      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignInController.submit()
-      http.post(m.url, login_param, res => {
-        this.$store.dispatch("login").then(() => {
-          this.$router.push("/")
-        });
-      }, error => {
-        this.error = error
-      })
-    },
-    logout() {
-      this.$store.dispatch('logout');
+      try {
+        userStore.login(this.email, this.password)
+        this.$router.push('/')
+      } catch (err) {
+        this.password = ''
+        this.failed = true
+      }
     }
   }
 

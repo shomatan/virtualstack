@@ -11,10 +11,9 @@ import Vuex from 'vuex'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-const store = require('./stores/').default;
-
 import App from './App.vue'
 import { http } from './services'
+import { userStore } from './stores'
 
 Vue.config.productionTip = false
 
@@ -31,7 +30,6 @@ var router = new VueRouter({
       component: require('./components/Home.vue')
     },
     {
-      name: 'Login',
       path: '/auth/login',
       component: require('./components/auth/Login.vue')
     },
@@ -41,7 +39,6 @@ var router = new VueRouter({
       component: require('./components/repositories/Detail.vue')
     },
     {
-      name: 'add',
       path: '/add',
       component: require('./components/repositories/Add.vue')
     }
@@ -51,10 +48,10 @@ var router = new VueRouter({
 new Vue({
   el: '#app',
   router: router,
-  store,
   template: '<App/>',
   components: { App },
   created: function () {
     http.init()
+    userStore.init()
   },
 })

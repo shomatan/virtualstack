@@ -47,12 +47,10 @@ export const http = {
 
       if (token) {
         localStorage.setItem('jwt-token', token)
-        console.log(token)
       }
       return response
     }, error => {
       // Also, if we receive a Bad Request / Unauthorized error
-      console.log(error)
       return Promise.reject(error)
     })
   }
