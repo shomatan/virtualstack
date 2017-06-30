@@ -1,75 +1,79 @@
 <template>
-    <div>
-        <div class="heading">
-            <template v-if="userState.authenticated">
-                <h1>Repositories</h1>
-            </template>
-            <template v-else>
-                <p>Dev-test pipeline automation and private registries</p>
-            </template>
-        </div>
-        <div v-if="userState.authenticated">
-            <div class="panel panel-default">
-                <table class="task-tbl table table-striped table-hover">
-                    <tbody v-for="r in repositories">
-                        <tr>
-                            <td>{{ r.name }}</td>
-                            <td><router-link :to="{ name: 'repository-detail', params: { name: r.name }}">DETAILS</router-link></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div v-else>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Sign Up</div>
-                            <div class="panel-body">
-
-                                <div class="form-group">
-                                    <label for="email" class="col-md-4 control-label">First name</label>
-                                    <div class="col-md-6">
-                                        <input id="first_name" type="text" v-model="firstName" class="form-control" required autofocus>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email" class="col-md-4 control-label">Last name</label>
-                                    <div class="col-md-6">
-                                        <input id="last_name" type="text" v-model="lastName" class="form-control" required autofocus>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-                                    <div class="col-md-6">
-                                        <input id="email" type="email" v-model="email" class="form-control" required autofocus>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" v-model="password" class="form-control" required autofocus>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-4">
-                                        <button v-on:click="create" class="btn btn-primary">
-                                            Create
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div>
+    <div class="heading">
+      <template v-if="userState.authenticated">
+        <h1>Repositories</h1>
+      </template>
+      <template v-else>
+        <p>Dev-test pipeline automation and private registries</p>
+      </template>
     </div>
+    <div v-if="userState.authenticated">
+      <div class="panel panel-default">
+        <table class="task-tbl table table-striped table-hover">
+          <tbody v-for="r in repositories">
+            <tr>
+              <td>{{ r.name }}</td>
+              <td><router-link :to="{ name: 'repository-detail', params: { name: r.name }}">DETAILS</router-link></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div v-else>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sign Up</div>
+              <div class="panel-body">
+
+                <div class="alert alert-danger" role="alert" v-if="failed">
+                  {{ messages }}
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="col-md-4 control-label">First name</label>
+                  <div class="col-md-6">
+                    <input id="first_name" type="text" v-model="firstName" class="form-control" required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="col-md-4 control-label">Last name</label>
+                  <div class="col-md-6">
+                    <input id="last_name" type="text" v-model="lastName" class="form-control" required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                  <div class="col-md-6">
+                    <input id="email" type="email" v-model="email" class="form-control" required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="col-md-4 control-label">Password</label>
+                  <div class="col-md-6">
+                    <input id="password" type="password" v-model="password" class="form-control" required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-8 col-md-offset-4">
+                    <button v-on:click="create" class="btn btn-primary">
+                        Create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -83,7 +87,8 @@ export default {
       isLoading: false,
       interval: null,
       repositories: [],
-      error: null,
+      failed: false,
+      messages: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -120,24 +125,20 @@ export default {
       })
     },
 
-    create () {
-      var signup_param = {firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password }
-      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
-
-
-      http.post(m.url, signup_param, response => {
-
-        this.$store.dispatch("login", {
-          email: this.email,
-          password: this.password
-        }).then(() => {
-          this.firstName = '';
-          this.lastName = '';
-          this.email =  '';
-          this.password = '';
-          this.$router.push("/")
-        });
-      })
+    async create () {
+      try {
+        await userStore.store(this.firstName, this.lastName, this.email, this.password)
+        this.firstName = ''
+        this.lastName = ''
+        this.email = ''
+        this.password = ''
+        this.$router.push('/')
+        this.failed = false
+      } catch (err) {
+        this.password = ''
+        this.failed = true
+        this.messages = err.response.data.message
+      }
     }
   },
 
