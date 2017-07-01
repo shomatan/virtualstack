@@ -48,7 +48,7 @@ class SignUpController @Inject() (
       data => {
         val loginInfo = LoginInfo(CredentialsProvider.ID, data.email)
         userService.retrieve(loginInfo).flatMap {
-          case Some(user) => Future.successful(BadRequest(Json.obj("message" -> Messages("user.exists"))))
+          case Some(user) => Future.successful(BadRequest(Json.obj("message" -> Messages("The E-mail address exists."))))
           case None =>
             val user = User(
               userId = UUID.randomUUID(),
