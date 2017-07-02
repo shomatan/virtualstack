@@ -56,4 +56,21 @@ export const userStore = {
       })
     })
   },
+
+  /**
+   * Stores a new user into the database.
+   *
+   * @param  {string}   firstName
+   * @param  {string}   lastName
+   * @param  {string}   email
+   * @param  {string}   password
+   */
+  store (firstName, lastName, email, password) {
+    return new Promise((resolve, reject) => {
+      var m = jsRoutes.com.github.virtualstack.controllers.api.v1.auth.SignUpController.submit()
+      http.post(m.url, { firstName: firstName, lastName: lastName, email: email, password: password }, response => {
+        this.login(email, password)
+      }, error => reject(error))
+    })
+  },
 }
