@@ -11,16 +11,19 @@ Make the service like `DockerHub`.
 - [done] 6/15 Create test repo(gitbucket), job(jenkins).
 - [done] 6/17 Set up postgreSQL for virtualstack app.
 - [done] 6/18 Write document (README.md)
+- Understand hot to use docker registry
+    - User authentication
 - Understand how to use build with Jenkin's API.
     - Create jenkins-client.
 - Understand how to access repositories with Gitbucket API.
     - [WIP] Create gitbucket-client.
 - Implement API server.
-    - [WIP]User authentication
+    - [done] 7/1 User authentication
         - [done] 6/22 JWT auth controller
-        - Vue.js JWT auth
+        - [done] 7/1 Vue.js JWT auth
     - [WIP] Modeling 
     - [WIP] Link to `docker-registry`
+    - User settings
 - Customize ready-to-use docker image for each service. 
 - Test gitbucket's webhook.
 - Link applications.
