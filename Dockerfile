@@ -1,4 +1,4 @@
-FROM node:8.1.0-alpine AS frontend
+FROM node:8.1.3-alpine AS frontend
 
 RUN set -xe \
     && npm install --global webpack@2.5.1
