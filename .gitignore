@@ -12,6 +12,7 @@ src_managed/
 project/boot/
 project/plugins/project/
 node_modules/
+public/javascripts/bundle.js
 
 # Scala-IDE specific
 .idea/
