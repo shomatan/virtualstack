@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 #
 # -----------------------------------------------------------------------------
 
@@ -17,4 +17,9 @@ echo "########################################################"
 
 echo "** Executing VirtualStack app"
 
-exec /app/bin/virtualstack "$@"
+exec /app/bin/virtualstack \
+        -Dslick.dbs.default.db.url="jdbc:postgresql://${VIRTUALSTACK_DB_HOST}/${VIRTUALSTACK_DB_NAME}" \
+        -Dslick.dbs.default.db.user="${VIRTUALSTACK_DB_USER}" \
+        -Dslick.dbs.default.db.password="${VIRTUALSTACK_DB_PASS}" \
+        -Dplay.evolutions.db.default.autoApply=true \
+        "$@"
