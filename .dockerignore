@@ -1,0 +1,19 @@
+# vue specific
+node_modules/
+
+# play specific
+project/project
+target/
+logs/
+
+# docker specific
+volumes/
+Dockerfile
+docker-compose.yml
+
+# project specific
+*.md
+doc/
+
+# IDE specific
+.idea/
