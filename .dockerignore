@@ -9,7 +9,7 @@ logs/
 # docker specific
 volumes/
 Dockerfile
-docker-compose.yml
+docker-compose*.yml
 
 # project specific
 *.md
