@@ -71,7 +71,8 @@ ENV VIRTUALSTACK_DB_HOST=virtualstack-db VIRTUALSTACK_DB_NAME=virtualstack VIRTU
 RUN set -xe \
     && apk update \
     && apk add --no-cache \
-        postgresql-client=9.5.7-r0
+        postgresql-client=9.5.7-r0 \
+        bash
 
 COPY --from=backend /work/virtualstack-0.1.0 /app
 
