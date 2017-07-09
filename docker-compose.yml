@@ -4,7 +4,7 @@ services:
   # virtaul stack app ↓
 
   virtualstack-db:
-    container_name: vs-db
+    container_name: vs-app-db
     image: postgres:9.5-alpine
     environment:
       POSTGRES_DB: virtualstack
@@ -33,7 +33,7 @@ services:
     restart: always
 
   gitbucket-db:
-    container_name: vs-postgres
+    container_name: vs-gitbucket-db
     image: postgres:9.5-alpine
     environment:
       POSTGRES_DB: gitbucket
