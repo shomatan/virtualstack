@@ -4,8 +4,6 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           com.github.virtualstack.controllers.HomeController.index
-
 PUT     /api/v1/profile             com.github.virtualstack.controllers.HomeController.profile
 GET     /api/v1/repositories        com.github.virtualstack.controllers.api.v1.ImageRepositoryController.all
 GET     /api/v1/repositories/:name  com.github.virtualstack.controllers.api.v1.ImageRepositoryController.detail(name: String)
@@ -18,9 +16,3 @@ POST    /api/v1/auth/signUp         com.github.virtualstack.controllers.api.v1.a
 POST    /api/v1/auth/signIn         com.github.virtualstack.controllers.api.v1.auth.SignInController.submit
 
 DELETE  /api/v1/auth/signOut        com.github.virtualstack.controllers.HomeController.signOut
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-
-# Javascript Routes
-GET     /javascriptRoutes           com.github.virtualstack.controllers.JsRouter.javascriptRoutes
