@@ -5,6 +5,7 @@ import play.api.http.DefaultHttpFilters
 import play.filters.csrf.CSRFFilter
 import play.filters.headers.SecurityHeadersFilter
 import play.filters.hosts.AllowedHostsFilter
+import play.filters.cors.CORSFilter
 
 /**
  * Add the following filters by default to all projects
@@ -16,10 +17,12 @@ import play.filters.hosts.AllowedHostsFilter
 class Filters @Inject() (
   csrfFilter: CSRFFilter,
   allowedHostsFilter: AllowedHostsFilter,
-  securityHeadersFilter: SecurityHeadersFilter
+  securityHeadersFilter: SecurityHeadersFilter,
+  cORSFilter: CORSFilter
 ) extends DefaultHttpFilters(
   // TODO: Enable in production
   //csrfFilter,
   allowedHostsFilter,
-  securityHeadersFilter
+  securityHeadersFilter,
+  cORSFilter
 )
